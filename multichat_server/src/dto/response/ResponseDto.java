@@ -8,5 +8,4 @@ import lombok.Data;
 public class ResponseDto<T> {
 	private String resource;
 	private T body;
-
 }

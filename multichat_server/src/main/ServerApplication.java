@@ -5,27 +5,36 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 import javax.swing.JFrame;
-
+ 
 public class ServerApplication {
+
 	public static void main(String[] args) {
 		JFrame serverFrame = new JFrame("서버");
 		serverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		serverFrame.setSize(300,300);
+		serverFrame.setSize(300, 300);
 		serverFrame.setVisible(true);
+		ServerSocket serverSocket = null;
 		
 		try {
-			ServerSocket serverSocket = new ServerSocket(9090);
-			
+			serverSocket = new ServerSocket(9090);
+		
 			while(true) {
 				Socket socket = serverSocket.accept();
 				ConnectedSocket connectedSocket = new ConnectedSocket(socket);
 				connectedSocket.start();
 			}
-			
+		
 		} catch (IOException e) {
-			
 			e.printStackTrace();
+		} finally {
+			if(serverSocket != null) {
+				try {
+					serverSocket.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
-
+	
 }

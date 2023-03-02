@@ -18,14 +18,22 @@ public class Room {
 		users = new ArrayList<>();
 	}
 	
-	public List<String> getUsernameList(){
+	public List<String> getUsernameList() {
 		List<String> usernameList = new ArrayList<>();
 		for(ConnectedSocket connectedSocket : users) {
 			usernameList.add(connectedSocket.getUsername());
-			
 		}
 		return usernameList;
-		
 	}
-
 }
+
+
+
+
+
+
+
+
+
+
+
